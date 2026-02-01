@@ -15,8 +15,8 @@ import {
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
-// replace with your own imports, see the usage snippet for details
-import lanyard from '../assets/lanyard/lanyard.png';
+// Use root-relative path from public/ folder for production compatibility
+const lanyard = '/assets/lanyard/lanyard.PNG';
 
 import './Lanyard.css';
 
@@ -149,7 +149,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, onDragStart, card
         linearDamping: 4
     };
 
-    const { nodes, materials } = useGLTF(`/src/assets/lanyard/${cardModel}`) as any;
+    const { nodes, materials } = useGLTF(`/assets/lanyard/${cardModel}`) as any;
     const texture = useTexture(lanyard);
     const [curve] = useState(
         () =>
