@@ -1,0 +1,26 @@
+.interactive-glow-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.interactive-glow-overlay::before {
+  content: '';
+  position: fixed;
+  left: var(--glow-x, 50%);
+  top: var(--glow-y, 50%);
+  width: var(--glow-size, 500px);
+  height: var(--glow-size, 500px);
+  transform: translate(-50%, -50%);
+  background: var(--glow-gradient);
+  opacity: var(--glow-opacity, 0);
+  transition: opacity 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .interactive-glow-overlay::before {
+    width: 80vw;
+    height: 80vw;
+  }
+}

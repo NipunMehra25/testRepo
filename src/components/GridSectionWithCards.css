@@ -1,0 +1,467 @@
+.grid-section-with-cards {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 5vw;
+  overflow: hidden;
+  margin-bottom: 10vh;
+}
+
+/* RippleGrid in background */
+.grid-section-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid-section-bg>* {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: auto;
+}
+
+/* Header */
+.grid-section-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 640px;
+}
+
+.grid-section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 12px;
+}
+
+.grid-section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+/* REFERENCE GRID LAYOUT */
+.reference-grid {
+  position: relative;
+  z-index: 3;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* PREVIEW CARD */
+.preview-card {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg,
+      rgba(20, 20, 25, 0.95) 0%,
+      rgba(10, 10, 12, 0.98) 100%);
+  border-radius: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(20px);
+}
+
+.preview-card:hover {
+  border-color: rgba(139, 92, 246, 0.7);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+}
+
+/* Corner brackets */
+.corner-bracket {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(139, 92, 246, 0.6);
+}
+
+.corner-bracket.tl {
+  top: 16px;
+  left: 16px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.corner-bracket.tr {
+  top: 16px;
+  right: 16px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.corner-bracket.bl {
+  bottom: 16px;
+  left: 16px;
+  border-right: none;
+  border-top: none;
+}
+
+.corner-bracket.br {
+  bottom: 16px;
+  right: 16px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Preview visual - Code visualization */
+.preview-visual {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+/* Code lines */
+.code-viz {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.code-line {
+  height: 3px;
+  background: linear-gradient(90deg,
+      rgba(167, 139, 250, 0.8) 0%,
+      rgba(139, 92, 246, 0.4) 100%);
+  border-radius: 2px;
+  transform-origin: left;
+  animation: codeDraw 2s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+.code-line.line-1 {
+  width: 70%;
+  animation-delay: 0s;
+}
+
+.code-line.line-2 {
+  width: 90%;
+  animation-delay: 0.15s;
+}
+
+.code-line.line-3 {
+  width: 60%;
+  animation-delay: 0.3s;
+}
+
+.code-line.line-4 {
+  width: 85%;
+  animation-delay: 0.45s;
+}
+
+.code-line.line-5 {
+  width: 50%;
+  animation-delay: 0.6s;
+}
+
+@keyframes codeDraw {
+  0% {
+    transform: scaleX(0);
+    opacity: 0.2;
+  }
+
+  15% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleX(1);
+    opacity: 0.2;
+  }
+}
+
+/* Visualization nodes */
+.viz-node {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+  animation: nodePulse 2s ease-in-out infinite;
+}
+
+.viz-node.node-1 {
+  top: 15%;
+  right: 15%;
+  animation-delay: 0s;
+}
+
+.viz-node.node-2 {
+  bottom: 20%;
+  right: 25%;
+  animation-delay: 0.7s;
+}
+
+.viz-node.node-3 {
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 1.4s;
+}
+
+@keyframes nodePulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+/* Glow effect */
+.viz-glow {
+  position: absolute;
+  inset: 20%;
+  background: radial-gradient(circle,
+      rgba(139, 92, 246, 0.6) 0%,
+      transparent 70%);
+  filter: blur(20px);
+  animation: vizGlow 4s ease-in-out infinite;
+}
+
+@keyframes vizGlow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+}
+
+/* Preview label */
+.preview-label {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* CENTER ICON BUTTON */
+.center-icon-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  margin: -40px 0;
+}
+
+.center-icon-button {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg,
+      rgba(30, 30, 50, 0.98) 0%,
+      rgba(20, 20, 40, 1) 100%);
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+.center-icon-button:hover {
+  transform: scale(1.1);
+  border-color: rgba(139, 92, 246, 0.8);
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.8),
+    0 0 0 8px rgba(139, 92, 246, 0.1),
+    0 0 40px rgba(139, 92, 246, 0.5);
+}
+
+/* Icon ring animation */
+.icon-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  animation: iconRingPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconRingPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Icon inner */
+.icon-inner {
+  width: 32px;
+  height: 32px;
+  color: #a78bfa;
+  animation: iconGlow 3s ease-in-out infinite;
+}
+
+@keyframes iconGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 16px rgba(139, 92, 246, 1));
+  }
+}
+
+.icon-inner svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+
+/* STAT CARD */
+.stat-card {
+  background: linear-gradient(135deg,
+      rgba(20, 20, 40, 0.6) 0%,
+      rgba(15, 15, 30, 0.8) 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+.stat-card:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+}
+
+/* Stat number */
+.stat-number {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+/* Stat label */
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .grid-section-with-cards {
+    padding: 60px 20px 48px;
+  }
+
+  .grid-section-header {
+    margin-bottom: 40px;
+  }
+
+  .reference-grid {
+    max-width: 100%;
+  }
+
+  .preview-card {
+    height: 180px;
+  }
+
+  .preview-visual {
+    width: 120px;
+    height: 120px;
+  }
+
+  .center-icon-container {
+    margin: -35px 0;
+  }
+
+  .center-icon-button {
+    width: 70px;
+    height: 70px;
+  }
+
+  .icon-inner {
+    width: 28px;
+    height: 28px;
+  }
+
+  .stats-grid {
+    margin-top: 35px;
+  }
+
+  .stat-card {
+    padding: 28px 20px;
+  }
+
+  .stat-number {
+    font-size: 1.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+}

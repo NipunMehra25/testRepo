@@ -1,0 +1,175 @@
+/* Premium glass card - purple/cyan glow aesthetic */
+.showcase-glass-card {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  min-height: 220px;
+  perspective: 1200px;
+  cursor: default;
+}
+
+/* Animated liquid / gradient border - 2px ring */
+.showcase-card-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.showcase-card-border-inner {
+  position: absolute;
+  inset: -100%;
+  width: 400%;
+  height: 400%;
+  left: -150%;
+  top: -150%;
+  background: conic-gradient(from 0deg,
+      var(--accent-from),
+      var(--accent-to),
+      var(--accent-from) 30%,
+      var(--accent-to) 60%,
+      var(--accent-from));
+  animation: showcaseBorderRotate 4s linear infinite;
+}
+
+.showcase-card-border::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: transparent;
+  border-radius: 18px;
+  z-index: 1;
+}
+
+/* Hover glow behind card */
+.showcase-card-hover-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 24px;
+  background: var(--glow);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.showcase-card-inner {
+  position: absolute;
+  inset: 2px;
+  z-index: 2;
+  border-radius: 18px;
+  padding: 28px 24px;
+  background: rgba(8, 8, 18, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.showcase-glass-card:hover .showcase-card-inner {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Shine sweep */
+.showcase-card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(105deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  border-radius: 18px;
+}
+
+/* Index badge */
+.showcase-card-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+  margin-bottom: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Typography */
+.showcase-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.showcase-card-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.showcase-card-underline {
+  position: absolute;
+  bottom: 28px;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  border-radius: 1px;
+  transform-origin: left;
+}
+
+/* Floating accent orb */
+.showcase-card-orb {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+@keyframes showcaseBorderRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .showcase-glass-card {
+    max-width: 100%;
+    min-height: 200px;
+  }
+
+  .showcase-card-inner {
+    padding: 22px 20px;
+  }
+
+  .showcase-card-title {
+    font-size: 1.1rem;
+  }
+
+  .showcase-card-description {
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,871 @@
+.orb-section-with-cards {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 5vw;
+  overflow: hidden;
+  background: #000;
+  margin-bottom: 10vh;
+}
+
+/* PREMIUM LAYERED BACKGROUND */
+/* Layer 1: Animated gradient mesh */
+.orb-section-with-cards::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+}
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(-5%, 5%) rotate(120deg);
+  }
+
+  66% {
+    transform: translate(5%, -5%) rotate(240deg);
+  }
+}
+
+/* Layer 2: Geometric grid pattern */
+.orb-section-with-cards::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(59, 130, 246, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 0%, transparent 70%);
+  animation: gridFlow 30s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes gridFlow {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+
+/* Orb background - now more integrated */
+.orb-section-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(100vh, 90vw);
+  height: min(100vh, 90vw);
+  min-width: 400px;
+  min-height: 400px;
+  transform: translate(-55%, -50%);
+  pointer-events: auto;
+  z-index: 0;
+  filter: blur(1px) brightness(1.1);
+  opacity: 0.9;
+}
+
+.orb-section-bg canvas,
+.orb-section-bg>* {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute;
+  inset: 0;
+}
+
+/* Floating particles overlay */
+.orb-section-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orb-particle-dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translate(var(--tx, 50px), var(--ty, -50px)) scale(1.5);
+    opacity: 1;
+  }
+}
+
+.orb-particle-dot:nth-child(1) {
+  top: 20%;
+  left: 15%;
+  --tx: 40px;
+  --ty: -60px;
+  animation-delay: 0s;
+}
+
+.orb-particle-dot:nth-child(2) {
+  top: 60%;
+  left: 80%;
+  --tx: -50px;
+  --ty: 40px;
+  animation-delay: 2s;
+}
+
+.orb-particle-dot:nth-child(3) {
+  top: 40%;
+  left: 70%;
+  --tx: 30px;
+  --ty: -40px;
+  animation-delay: 4s;
+}
+
+.orb-particle-dot:nth-child(4) {
+  top: 80%;
+  left: 30%;
+  --tx: -40px;
+  --ty: -30px;
+  animation-delay: 6s;
+}
+
+.orb-particle-dot:nth-child(5) {
+  top: 30%;
+  left: 50%;
+  --tx: 60px;
+  --ty: 50px;
+  animation-delay: 1s;
+}
+
+/* Accent light beams */
+.orb-section-beam {
+  position: absolute;
+  width: 2px;
+  height: 200px;
+  background: linear-gradient(180deg,
+      transparent,
+      rgba(139, 92, 246, 0.4),
+      transparent);
+  pointer-events: none;
+  z-index: 1;
+  animation: beamPulse 4s ease-in-out infinite;
+}
+
+@keyframes beamPulse {
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scaleY(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scaleY(1.2);
+  }
+}
+
+.orb-section-beam:nth-child(1) {
+  top: 10%;
+  left: 25%;
+  transform: rotate(15deg);
+  animation-delay: 0s;
+}
+
+.orb-section-beam:nth-child(2) {
+  top: 60%;
+  right: 20%;
+  transform: rotate(-20deg);
+  animation-delay: 1.5s;
+  background: linear-gradient(180deg,
+      transparent,
+      rgba(59, 130, 246, 0.4),
+      transparent);
+}
+
+.orb-section-beam:nth-child(3) {
+  bottom: 15%;
+  left: 60%;
+  transform: rotate(10deg);
+  animation-delay: 3s;
+  background: linear-gradient(180deg,
+      transparent,
+      rgba(236, 72, 153, 0.3),
+      transparent);
+}
+
+/* Header overlay */
+.orb-section-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 56px;
+  max-width: 640px;
+}
+
+.orb-section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 12px;
+}
+
+.orb-section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+/* HOLOGRAPHIC DATA PANELS */
+.data-stream-container {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  width: 100%;
+  perspective: 1000px;
+}
+
+.data-panel {
+  position: relative;
+  padding: 32px 28px;
+  background: rgba(8, 8, 16, 0.5);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Subtle gradient overlay */
+.data-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right,
+      var(--accent-color, rgba(139, 92, 246, 0.08)) 0%,
+      transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.data-panel:hover::before {
+  opacity: 1;
+}
+
+.data-panel:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(12, 12, 24, 0.6);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.7),
+    0 0 0 1px var(--accent-color, rgba(139, 92, 246, 0.2)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Remove scanline - too distracting */
+
+/* Icon Container - No Background */
+.panel-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.panel-badge svg {
+  width: 64px;
+  height: 64px;
+}
+
+/* CRAZY ICON ANIMATIONS */
+.animated-icon {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+/* Brain Icon Animations */
+.brain-icon .neuron {
+  animation: neuronPulse 2s ease-in-out infinite;
+}
+
+.brain-icon .neuron.n1 {
+  animation-delay: 0s;
+}
+
+.brain-icon .neuron.n2 {
+  animation-delay: 0.2s;
+}
+
+.brain-icon .neuron.n3 {
+  animation-delay: 0.4s;
+}
+
+.brain-icon .neuron.n4 {
+  animation-delay: 0.6s;
+}
+
+.brain-icon .neuron.n5 {
+  animation-delay: 0.8s;
+}
+
+.brain-icon .neuron.n6 {
+  animation-delay: 1s;
+}
+
+@keyframes neuronPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    r: 2;
+  }
+
+  50% {
+    opacity: 1;
+    r: 3;
+  }
+}
+
+.brain-icon .synapse {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: synapseFlow 3s linear infinite;
+}
+
+.brain-icon .synapse.s1 {
+  animation-delay: 0s;
+}
+
+.brain-icon .synapse.s2 {
+  animation-delay: 0.5s;
+}
+
+.brain-icon .synapse.s3 {
+  animation-delay: 1s;
+}
+
+.brain-icon .synapse.s4 {
+  animation-delay: 1.5s;
+}
+
+.brain-icon .synapse.s5 {
+  animation-delay: 2s;
+}
+
+.brain-icon .synapse.s6 {
+  animation-delay: 2.5s;
+}
+
+@keyframes synapseFlow {
+  0% {
+    stroke-dashoffset: 20;
+    opacity: 0.3;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: -20;
+    opacity: 0.3;
+  }
+}
+
+.brain-icon .pulse-ring {
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+.brain-icon .pulse-ring.r1 {
+  animation-delay: 0s;
+}
+
+.brain-icon .pulse-ring.r2 {
+  animation-delay: 1s;
+}
+
+@keyframes ringPulse {
+
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+}
+
+/* Network Icon Animations */
+.network-icon .orbit-node {
+  animation: orbitFloat 4s ease-in-out infinite;
+}
+
+.network-icon .orbit-node.node1 {
+  animation-delay: 0s;
+}
+
+.network-icon .orbit-node.node2 {
+  animation-delay: 0.5s;
+}
+
+.network-icon .orbit-node.node3 {
+  animation-delay: 1s;
+}
+
+.network-icon .orbit-node.node4 {
+  animation-delay: 1.5s;
+}
+
+.network-icon .orbit-node.node5 {
+  animation-delay: 2s;
+}
+
+.network-icon .orbit-node.node6 {
+  animation-delay: 2.5s;
+}
+
+.network-icon .orbit-node.node7 {
+  animation-delay: 3s;
+}
+
+.network-icon .orbit-node.node8 {
+  animation-delay: 3.5s;
+}
+
+@keyframes orbitFloat {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    r: 2.5;
+  }
+
+  50% {
+    opacity: 1;
+    r: 3.5;
+  }
+}
+
+.network-icon .conn-line {
+  stroke-dasharray: 10;
+  stroke-dashoffset: 10;
+  animation: dataFlow 2s linear infinite;
+  opacity: 0.4;
+}
+
+.network-icon .conn-line.c1 {
+  animation-delay: 0s;
+}
+
+.network-icon .conn-line.c2 {
+  animation-delay: 0.25s;
+}
+
+.network-icon .conn-line.c3 {
+  animation-delay: 0.5s;
+}
+
+.network-icon .conn-line.c4 {
+  animation-delay: 0.75s;
+}
+
+.network-icon .conn-line.c5 {
+  animation-delay: 1s;
+}
+
+.network-icon .conn-line.c6 {
+  animation-delay: 1.25s;
+}
+
+.network-icon .conn-line.c7 {
+  animation-delay: 1.5s;
+}
+
+.network-icon .conn-line.c8 {
+  animation-delay: 1.75s;
+}
+
+@keyframes dataFlow {
+  0% {
+    stroke-dashoffset: 10;
+    opacity: 0.2;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+
+  100% {
+    stroke-dashoffset: -10;
+    opacity: 0.2;
+  }
+}
+
+.network-icon .orbit-ring {
+  animation: orbitRotate 8s linear infinite;
+  transform-origin: center;
+}
+
+.network-icon .orbit-ring.ring1 {
+  animation-duration: 8s;
+}
+
+.network-icon .orbit-ring.ring2 {
+  animation-duration: 12s;
+  animation-direction: reverse;
+}
+
+@keyframes orbitRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.network-icon .hub-center {
+  animation: hubPulse 2s ease-in-out infinite;
+}
+
+@keyframes hubPulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    r: 3;
+  }
+
+  50% {
+    opacity: 1;
+    r: 4;
+  }
+}
+
+/* Lightbulb Icon Animations */
+.bulb-icon .light-rays .ray {
+  animation: rayFlash 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.bulb-icon .ray.r1 {
+  animation-delay: 0s;
+}
+
+.bulb-icon .ray.r2 {
+  animation-delay: 0.2s;
+}
+
+.bulb-icon .ray.r3 {
+  animation-delay: 0.4s;
+}
+
+.bulb-icon .ray.r4 {
+  animation-delay: 0.6s;
+}
+
+.bulb-icon .ray.r5 {
+  animation-delay: 0.8s;
+}
+
+@keyframes rayFlash {
+
+  0%,
+  100% {
+    opacity: 0.2;
+    stroke-width: 1;
+  }
+
+  50% {
+    opacity: 1;
+    stroke-width: 2.5;
+  }
+}
+
+.bulb-icon .filament {
+  animation: filamentGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes filamentGlow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    stroke-width: 1.5;
+  }
+
+  50% {
+    opacity: 1;
+    stroke-width: 2;
+  }
+}
+
+.bulb-icon .energy-particle {
+  animation: particleBounce 2s ease-in-out infinite;
+}
+
+.bulb-icon .energy-particle.p1 {
+  animation-delay: 0s;
+}
+
+.bulb-icon .energy-particle.p2 {
+  animation-delay: 0.5s;
+}
+
+.bulb-icon .energy-particle.p3 {
+  animation-delay: 1s;
+}
+
+@keyframes particleBounce {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    r: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+    r: 1.5;
+  }
+}
+
+.bulb-icon .bulb-body {
+  animation: bulbBreath 3s ease-in-out infinite;
+}
+
+@keyframes bulbBreath {
+
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Content */
+.panel-content {
+  position: relative;
+  z-index: 2;
+}
+
+.panel-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+}
+
+.panel-description {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 20px 0;
+}
+
+/* Metrics bar */
+.panel-metrics {
+  display: flex;
+  gap: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.metric-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+/* Minimal corner accents */
+.panel-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.data-panel:hover .panel-corner {
+  opacity: 1;
+  border-color: var(--accent-color, rgba(139, 92, 246, 0.6));
+  filter: drop-shadow(0 0 6px var(--accent-color, rgba(139, 92, 246, 0.4)));
+}
+
+.corner-tl {
+  top: 12px;
+  left: 12px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.corner-tr {
+  top: 12px;
+  right: 12px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.corner-bl {
+  bottom: 12px;
+  left: 12px;
+  border-right: none;
+  border-top: none;
+}
+
+.corner-br {
+  bottom: 12px;
+  right: 12px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Data stream lines */
+.data-stream-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent,
+      var(--accent-color, rgba(139, 92, 246, 0.5)),
+      transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.data-panel:hover .data-stream-line {
+  opacity: 1;
+  animation: streamFlow 2s ease-in-out infinite;
+}
+
+@keyframes streamFlow {
+  0% {
+    width: 0;
+    left: 0;
+  }
+
+  50% {
+    width: 100%;
+    left: 0;
+  }
+
+  100% {
+    width: 0;
+    left: 100%;
+  }
+}
+
+.line-1 {
+  top: 50%;
+  left: 0;
+}
+
+.line-2 {
+  bottom: 30%;
+  left: 0;
+  animation-delay: 0.5s;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .orb-section-with-cards {
+    padding: 80px 5vw 60px;
+  }
+
+  .data-stream-container {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .orb-section-bg {
+    transform: translate(-50%, -50%);
+    width: 80vh;
+    height: 80vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .orb-section-with-cards {
+    padding: 60px 20px 48px;
+  }
+
+  .orb-section-header {
+    margin-bottom: 40px;
+  }
+
+  .data-stream-container {
+    gap: 24px;
+  }
+
+  .orb-section-beam,
+  .orb-particle-dot {
+    display: none;
+  }
+
+  .data-panel {
+    padding: 24px 20px;
+  }
+}

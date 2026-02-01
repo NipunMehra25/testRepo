@@ -1,0 +1,129 @@
+/* Features Constellation - Main Layout */
+.features-constellation {
+    position: relative;
+    width: 100%;
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* SVG Connection Lines */
+.constellation-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Central AI Core */
+.constellation-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Feature Nodes Container */
+.constellation-nodes {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+/* Individual Node Wrapper - Desktop Circular Layout */
+.constellation-node-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% + var(--node-x)),
+            calc(-50% + var(--node-y)));
+}
+
+/* Tablet Layout (Semi-circular) */
+@media (max-width: 1024px) {
+    .features-constellation {
+        min-height: 1000px;
+    }
+
+    .constellation-core {
+        top: 200px;
+        left: 50%;
+    }
+
+    .constellation-node-wrapper {
+        position: relative;
+        transform: none;
+        top: auto;
+        left: auto;
+        margin: 0 auto 40px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .constellation-nodes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        margin-top: 300px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Adjust lines for semi-circular layout */
+    .constellation-lines line {
+        display: none;
+        /* Hide complex lines on tablet, can be re-enabled with adjusted calculations */
+    }
+}
+
+/* Mobile Layout (Vertical Timeline) */
+@media (max-width: 768px) {
+    .features-constellation {
+        min-height: auto;
+        padding: 40px 20px;
+    }
+
+    .constellation-core {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 0 auto 60px;
+    }
+
+    .constellation-nodes {
+        margin-top: 0;
+        gap: 32px;
+    }
+
+    .constellation-node-wrapper {
+        margin-bottom: 32px;
+    }
+
+    /* Vertical connecting line for mobile */
+    .constellation-lines::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 180px;
+        bottom: 40px;
+        width: 1px;
+        background: linear-gradient(to bottom,
+                rgba(96, 165, 250, 0.6) 0%,
+                rgba(96, 165, 250, 0.3) 50%,
+                rgba(96, 165, 250, 0.6) 100%);
+        transform: translateX(-50%);
+    }
+
+    .constellation-lines line {
+        display: none;
+    }
+}

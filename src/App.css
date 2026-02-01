@@ -1,0 +1,327 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  background: black;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* =========================
+   LIQUID ETHER (GLOBAL BG)
+========================= */
+.liquid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* =========================
+   HERO / SPLINE
+========================= */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Spline wrapper */
+.spline-center {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Force canvas to fill + center */
+.spline-center canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* =========================
+   FANCY INPUT OVERLAY
+========================= */
+.hero-fancy-input {
+  position: absolute;
+  bottom: 34%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+}
+
+/* Responsive: hero-fancy-input */
+@media (max-width: 1024px) {
+  .hero-fancy-input {
+    bottom: 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-fancy-input {
+    bottom: 20%;
+    transform: translateX(-50%) scale(0.9);
+  }
+}
+
+@media (max-width: 667px) and (orientation: landscape) {
+  .hero-fancy-input {
+    bottom: 15%;
+    transform: translateX(-50%) scale(0.8);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-fancy-input {
+    bottom: 14%;
+    transform: translateX(-50%) scale(0.85);
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-fancy-input {
+    bottom: 12%;
+    transform: translateX(-50%) scale(0.75);
+  }
+}
+
+@media (max-width: 320px) {
+  .hero-fancy-input {
+    bottom: 10%;
+    transform: translateX(-50%) scale(0.7);
+  }
+}
+
+/* =========================
+   SCROLL SECTIONS
+========================= */
+.section {
+  height: 120vh;
+  width: 100%;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+/* Responsive: section */
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
+}
+
+@media (max-width: 667px) and (orientation: landscape) {
+  .section {
+    height: auto;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 15px;
+  }
+}
+
+.section h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+/* Responsive: section h2 */
+@media (max-width: 768px) {
+  .section h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .section h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section h2 {
+    font-size: 3.5rem;
+  }
+}
+
+.section p {
+  max-width: 600px;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+/* Responsive: section p */
+@media (max-width: 768px) {
+  .section p {
+    max-width: 90vw;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section p {
+    font-size: 1.2rem;
+  }
+}
+
+.grid {
+  height: 120vh;
+  width: 100vw;
+  background-color: black;
+}
+
+.tryButton {
+  position: absolute;
+  right: 3vw;
+  top: 6vh;
+  height: 5vh;
+  width: 10vw;
+  z-index: 3;
+}
+
+/* Responsive: tryButton */
+@media (max-width: 1024px) {
+  .tryButton {
+    width: 12vw;
+    min-width: 90px;
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tryButton {
+    right: 4vw;
+    top: 4vh;
+    width: 15vw;
+    min-width: 80px;
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tryButton {
+    right: 3vw;
+    top: 3vh;
+    width: 20vw;
+    height: 4.5vh;
+    min-width: 70px;
+    max-width: 100px;
+    min-height: 35px;
+    max-height: 50px;
+  }
+}
+
+@media (max-width: 375px) {
+  .tryButton {
+    width: 22vw;
+    min-width: 65px;
+    max-width: 90px;
+  }
+}
+
+@media (max-width: 320px) {
+  .tryButton {
+    width: 25vw;
+  }
+}
+
+@media (min-width: 1920px) {
+  .tryButton {
+    width: 8vw;
+    min-width: 120px;
+    max-width: 180px;
+  }
+}
+
+#filter-icon {
+  cursor: pointer;
+  user-select: none;
+}
+
+#filter-icon:hover {
+  background: linear-gradient(180deg, #1e1b4b, black, #312e81);
+}
+
+
+.navBar {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 50%;
+  z-index: 50;
+  background: transparent;
+}
+
+.navInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navLinks {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navLinks li:hover {
+  color: #ffffff;
+}
+
+.navButton {
+  padding: 8px 16px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+}

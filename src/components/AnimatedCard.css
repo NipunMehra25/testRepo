@@ -1,0 +1,115 @@
+.animated-card {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #5227FF, #FF9FFC, #B19EEF);
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.card-border-gradient {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, #5227FF, #FF9FFC, #B19EEF);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  animation: borderRotate 3s linear infinite;
+}
+
+@keyframes borderRotate {
+  0% {
+    background: linear-gradient(135deg, #5227FF, #FF9FFC, #B19EEF);
+  }
+  33% {
+    background: linear-gradient(225deg, #FF9FFC, #B19EEF, #5227FF);
+  }
+  66% {
+    background: linear-gradient(315deg, #B19EEF, #5227FF, #FF9FFC);
+  }
+  100% {
+    background: linear-gradient(135deg, #5227FF, #FF9FFC, #B19EEF);
+  }
+}
+
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.animated-card:hover .card-content {
+  background: rgba(15, 15, 25, 0.9);
+  border-color: rgba(82, 39, 255, 0.3);
+  box-shadow: 0 12px 48px rgba(82, 39, 255, 0.2);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5227FF;
+  font-size: 24px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .animated-card {
+    max-width: 100%;
+    height: 250px;
+  }
+
+  .card-content {
+    padding: 24px;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .card-description {
+    font-size: 0.875rem;
+  }
+}

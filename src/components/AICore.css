@@ -1,0 +1,240 @@
+/* AI Core - Black Box System */
+.ai-core-container {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Smooth radar waves - pure CSS for perfect continuity */
+.ai-core-radar-wave {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(76, 201, 240, 0.8);
+    box-shadow: 0 0 10px rgba(76, 201, 240, 0.4);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+}
+
+.radar-wave-1 {
+    animation: smooth-radar-pulse 4s ease-out infinite;
+}
+
+.radar-wave-2 {
+    animation: smooth-radar-pulse 4s ease-out infinite 1.33s;
+}
+
+.radar-wave-3 {
+    animation: smooth-radar-pulse 4s ease-out infinite 2.66s;
+}
+
+@keyframes smooth-radar-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(3.2);
+        opacity: 0;
+    }
+}
+
+/* Main core - black box with blue border */
+.ai-core-main {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #0A0A0A;
+    border: 2px solid rgba(76, 201, 240, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+/* Activating state - white pulse ring */
+.ai-core-activating::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    animation: pulse-ring 0.15s ease-out;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+.ai-core-main:hover {
+    border-color: rgba(76, 201, 240, 1);
+}
+
+.ai-core-main.ai-core-analyzing {
+    border-color: rgba(76, 201, 240, 1);
+    box-shadow: 0 0 30px rgba(76, 201, 240, 0.6);
+    animation: premium-core-pulse 0.6s ease-out;
+}
+
+@keyframes premium-core-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(76, 201, 240, 0.6);
+    }
+
+    50% {
+        transform: scale(1.15);
+        box-shadow: 0 0 50px rgba(76, 201, 240, 0.9);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(76, 201, 240, 0.6);
+    }
+}
+
+/* Crosshair symbol */
+.ai-core-crosshair {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.crosshair-h {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%);
+}
+
+.crosshair-v {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateX(-50%);
+}
+
+.crosshair-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Label */
+.ai-core-label {
+    position: absolute;
+    bottom: -30px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+}
+
+/* Cursor-following terminal dialog */
+.ai-core-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 220px;
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0;
+    pointer-events: none;
+    z-index: 100;
+    font-family: 'Courier New', monospace;
+}
+
+.dialog-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.dialog-indicator {
+    font-size: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.dialog-title {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.dialog-content {
+    padding: 12px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+}
+
+.dialog-footer {
+    padding: 8px 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ai-core-container {
+        width: 140px;
+        height: 140px;
+    }
+
+    .ai-core-main {
+        width: 80px;
+        height: 80px;
+    }
+
+    .ai-core-crosshair {
+        width: 32px;
+        height: 32px;
+    }
+
+    .ai-core-dialog {
+        min-width: 180px;
+        top: auto;
+        bottom: -120px;
+        left: 50%;
+        transform: translateX(-50%) !important;
+    }
+}

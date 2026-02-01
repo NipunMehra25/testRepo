@@ -1,0 +1,27 @@
+.glowing-lines-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.glowing-line {
+  position: absolute;
+  background: var(--line-color);
+  transition: opacity 0.15s ease;
+}
+
+.glowing-line--h {
+  left: 0;
+  right: 0;
+  height: 1px;
+  box-shadow: 0 0 8px var(--line-color);
+}
+
+.glowing-line--v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  box-shadow: 0 0 8px var(--line-color);
+}
